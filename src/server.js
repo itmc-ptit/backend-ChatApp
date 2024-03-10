@@ -5,7 +5,8 @@ import { router } from "./routes";
 import {
   errorResponseHandler,
   invalidPathHandler,
-} from "./middlewares/errorHandlingMiddelware";
+} from "./middlewares/errorHandlingMiddleware";
+import { connectToSql } from "./config/mysql";
 const app = express();
 const port = 4000;
 
@@ -17,6 +18,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions)); // sử dụng cors
 app.use(express.json()); // dùng để đọc dữ liệu từ body của request
+connectToSql(); // kết nối đến mysql
 app.use("/apis", router); // cấu hình router
 
 app.use(invalidPathHandler); //xử lí lỗi khi nhập sai path
