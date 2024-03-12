@@ -7,8 +7,8 @@ import {
   invalidPathHandler,
 } from "./middlewares/errorHandlingMiddleware";
 import { connectToSql } from "./config/mysql";
+import { connectToMongoDB } from "./config/mongodb";
 const app = express();
-const port = 4000;
 
 // config để kết nối đến với FE
 const corsOptions = {
@@ -19,10 +19,11 @@ const corsOptions = {
 app.use(cors(corsOptions)); // sử dụng cors
 app.use(express.json()); // dùng để đọc dữ liệu từ body của request
 connectToSql(); // kết nối đến mysql
+connectToMongoDB(); // kết nối đến mongodb
 app.use("/apis", router); // cấu hình router
 
 app.use(invalidPathHandler); //xử lí lỗi khi nhập sai path
 app.use(errorResponseHandler); // xử lí tất cả các lỗi trong khi code
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}`);
 });
