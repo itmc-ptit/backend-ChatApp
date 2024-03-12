@@ -16,4 +16,4 @@ const connectToSql = async () => {
     process.exit(1);
   }
 };
-export { connectToSql };
+export { connectToSql, connection as dbSql };

@@ -20,7 +20,7 @@ app.use(cors(corsOptions)); // sử dụng cors
 app.use(express.json()); // dùng để đọc dữ liệu từ body của request
 connectToSql(); // kết nối đến mysql
 connectToMongoDB(); // kết nối đến mongodb
-app.use("/apis", router); // cấu hình router
+app.use("/api", router); // cấu hình router
 
 app.use(invalidPathHandler); //xử lí lỗi khi nhập sai path
 app.use(errorResponseHandler); // xử lí tất cả các lỗi trong khi code
